@@ -33,6 +33,7 @@ typedef void (^FTPopOverMenuDismissBlock)();
 @property (nonatomic, strong)UIFont *textFont;
 @property (nonatomic, assign)NSTextAlignment textAlignment;
 @property (nonatomic, assign)BOOL ignoreImageOriginalColor;// Default is 'NO', if sets to 'YES', images color will be same as textColor.
+@property (nonatomic, assign)BOOL rtl;// Default is 'NO', if sets to 'YES', images will appear from right to left
 /**
  *  defaultConfiguration
  *
