@@ -70,6 +70,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
         self.borderWidth = FTDefaultMenuBorderWidth;
         self.textAlignment = NSTextAlignmentLeft;
         self.ignoreImageOriginalColor = NO;
+        self.rtl = NO;
    }
     return self;
 }
@@ -113,6 +114,10 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
             _iconImageView.contentMode = UIViewContentModeScaleAspectFit;
             _iconImageView.tintColor = [FTPopOverMenuConfiguration defaultConfiguration].textColor;
             _iconImageView.image = iconImage;
+            
+            if ([FTPopOverMenuConfiguration defaultConfiguration].rtl) {
+                [_iconImageView setTransform:CGAffineTransformMakeScale(-1, 1)];
+            }
             [self.contentView addSubview:_iconImageView];
         }else{
             menuNameRect = CGRectMake(FTDefaultMenuTextMargin, 0, [FTPopOverMenuConfiguration defaultConfiguration].menuWidth - FTDefaultMenuTextMargin*2, [FTPopOverMenuConfiguration defaultConfiguration].menuRowHeight);
@@ -123,7 +128,15 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
         _menuNameLabel.textColor = [FTPopOverMenuConfiguration defaultConfiguration].textColor;
         _menuNameLabel.textAlignment = [FTPopOverMenuConfiguration defaultConfiguration].textAlignment;
         _menuNameLabel.text = menuName;
+        
+        if ([FTPopOverMenuConfiguration defaultConfiguration].rtl) {
+            [_menuNameLabel setTransform:CGAffineTransformMakeScale(-1, 1)];
+        }
         [self.contentView addSubview:_menuNameLabel];
+        
+        if ([FTPopOverMenuConfiguration defaultConfiguration].rtl) {
+            [self.contentView setTransform:CGAffineTransformMakeScale(-1, 1)];
+        }
     }
     return self;
 }
